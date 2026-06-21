@@ -6,7 +6,7 @@ const NotFound = () => {
   const [redirect, setRedirect] = useState(false)
 
   if (redirect) {
-    return <Redirect to="/dash" />
+    return <Redirect to="/" />
   }
 
   return (

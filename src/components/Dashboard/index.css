@@ -1,14 +1,89 @@
-/* k */
+/*  */
 .referrals-container {
   font-family: sans-serif;
   margin-top: 24px;
   width: 100%;
 }
+.overviewValue {
+  font-size: 20px;
+}
+/* Footer Styles */
+.footer-container {
+  width: 100%;
+  margin-top: 40px;
+  background-color: #ffffff;
+  border-top: 1px solid #eaeaea;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
 
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3b30d8; /* Matching the vibrant blue color in your layout */
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #4a5568;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #3b30d8;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  color: #718096;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .footer-copyright {
+    width: auto;
+    text-align: right;
+    margin-top: 0;
+    order: 3;
+  }
+  .footer-nav {
+    order: 2;
+  }
+  .footer-brand {
+    order: 1;
+  }
+}
+.table-body {
+  cursor: pointer;
+}
 .referrals-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1E293B;
+  color: #1e293b;
   margin-bottom: 16px;
 }
 
@@ -27,7 +102,8 @@
   padding: 0 24px 16px 24px;
 }
 
-.search-box, .sort-box {
+.search-box,
+.sort-box {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -35,11 +111,11 @@
 
 .control-label {
   font-size: 13px;
-  color: #64748B;
+  color: #64748b;
 }
 
 .search-input {
-  border: 1px solid #E2E8F0;
+  border: 1px solid #e2e8f0;
   border-radius: 6px;
   padding: 8px 14px;
   font-size: 14px;
@@ -49,7 +125,7 @@
 }
 
 .sort-dropdown {
-  border: 1px solid #E2E8F0;
+  border: 1px solid #e2e8f0;
   border-radius: 6px;
   padding: 8px 12px;
   font-size: 14px;
@@ -71,26 +147,26 @@
 }
 
 .referrals-table th {
-  background-color: #F8FAFC;
+  background-color: #f8fafc;
   font-size: 11px;
   font-weight: 700;
-  color: #8A94A6;
+  color: #8a94a6;
   letter-spacing: 0.8px;
   padding: 12px 24px;
-  border-top: 1px solid #E2E8F0;
-  border-bottom: 1px solid #E2E8F0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .referrals-table td {
   padding: 16px 24px;
   font-size: 14px;
   color: #475569;
-  border-bottom: 1px solid #F1F5F9;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 /* Specific text stylings for exact mapping */
 .referrals-table tbody tr td:last-child {
-  color: #3B82F6; /* Profit column blue tone */
+  color: #3b82f6; /* Profit column blue tone */
   font-weight: 500;
 }
 
@@ -104,7 +180,7 @@
 
 .entries-info {
   font-size: 13px;
-  color: #94A3B8;
+  color: #94a3b8;
 }
 
 .pagination {
@@ -116,7 +192,7 @@
 .page-btn {
   border: none;
   background: transparent;
-  color: #64748B;
+  color: #64748b;
   min-width: 32px;
   height: 32px;
   border-radius: 6px;
@@ -129,18 +205,18 @@
 }
 
 .page-btn.active {
-  background-color: #4F46E5;
+  background-color: #4f46e5;
   color: #ffffff;
 }
 
 .page-btn:not(.active):hover {
-  background-color: #F1F5F9;
+  background-color: #f1f5f9;
 }
 
 .page-btn.text-btn {
   padding: 0 8px;
   font-weight: 500;
-  color: #94A3B8;
+  color: #94a3b8;
 }
 .refer-container {
   font-family: sans-serif;
@@ -150,7 +226,7 @@
 .refer-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1E293B;
+  color: #1e293b;
   margin-bottom: 16px;
 }
 
@@ -172,7 +248,7 @@
   display: block;
   font-size: 11px;
   font-weight: 700;
-  color: #8A94A6;
+  color: #8a94a6;
   letter-spacing: 0.8px;
   margin-bottom: 12px;
   text-transform: uppercase;
@@ -181,8 +257,8 @@
 .refer-input-group {
   display: flex;
   align-items: center;
-  background-color: #F8FAFC;
-  border: 1px solid #E2E8F0;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
   padding: 4px 4px 4px 16px;
 }
@@ -198,7 +274,7 @@
 }
 
 .copy-button {
-  background-color: #4F46E5; /* Vibrant indigo/blue color from layout */
+  background-color: #4f46e5; /* Vibrant indigo/blue color from layout */
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -210,7 +286,7 @@
 }
 
 .copy-button:hover {
-  background-color: #4338CA;
+  background-color: #4338ca;
 }
 
 /* Responsiveness for smaller screens */
@@ -297,6 +373,7 @@
   border: 1px solid black;
   border-radius: 5px;
   height: 40px;
+  font-size: 20px;
   width: 40px;
   padding-top: 5px;
   margin-left: 20px;
@@ -318,7 +395,7 @@
 }
 .dashboardContainer {
   background-color: #dcdcdc;
-  height: 250vh;
+  height: 260vh;
   padding: 70px;
   margin: 0px;
 }

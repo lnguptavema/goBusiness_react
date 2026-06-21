@@ -2,8 +2,6 @@ import { Component } from 'react'
 
 import Cookies from 'js-cookie'
 
-import { Link } from 'react-router-dom'
-
 import './index.css'
 
 import {
@@ -41,18 +39,28 @@ class Dashboard extends Component {
         this.getReferrals()
     }
 
-    onChangeSearch = event => {
-        this.setState({
-            searchInput: event.target.value,
-            currentPage: 1,
-        })
+    changePage = pageNumber => {
+        this.setState({ currentPage: pageNumber })
     }
 
-    onChangeSort = event => {
-        this.setState({
-            sortBy: event.target.value,
-            currentPage: 1,
-        })
+    goToNextPage = totalPages => {
+        const { currentPage } = this.state
+
+        if (currentPage < totalPages) {
+            this.setState({
+                currentPage: currentPage + 1,
+            })
+        }
+    }
+
+    goToPreviousPage = () => {
+        const { currentPage } = this.state
+
+        if (currentPage > 1) {
+            this.setState({
+                currentPage: currentPage - 1,
+            })
+        }
     }
 
     renderLoader = props => {
@@ -67,8 +75,24 @@ class Dashboard extends Component {
     getReferrals = async () => {
         const jwtToken = Cookies.get('jwt_token')
 
-        const url =
+        const { searchInput, sortBy } = this.state
+
+        let url =
             'https://v9fes04dwf.execute-api.eu-north-1.amazonaws.com/api/referrals'
+
+        const queryParams = []
+
+        if (searchInput.trim() !== '') {
+            queryParams.push(`search=${searchInput}`)
+        }
+
+        if (sortBy) {
+            queryParams.push(`sort=${sortBy}`)
+        }
+
+        if (queryParams.length > 0) {
+            url = `${url}?${queryParams.join('&')}`
+        }
 
         const options = {
             method: 'GET',
@@ -81,17 +105,12 @@ class Dashboard extends Component {
         const data = await response.json()
 
         if (response.ok) {
-            console.log('Data:', data)
             this.setState({
+                totalData: data.data,
                 metrics: data.data.metrics,
+                currentPage: 1,
                 apiStatus: status.success,
-                totalData: data.data
             })
-
-        }
-        else {
-            console.log('Error:', data)
-            this.setState({ apiStatus: status.failure })
         }
     }
 
@@ -126,7 +145,7 @@ class Dashboard extends Component {
                                 {icons[item.id]}
                             </div>
 
-                            <h1>{item.value}</h1>
+                            <h1 className="overviewValue">{item.value}</h1>
                             <p>{item.label}</p>
                         </div>
                     ))}
@@ -146,8 +165,11 @@ class Dashboard extends Component {
             totalRefEarnings,
         } = serviceSummary
 
-        return (
+        return (<>
+
             <div className="service-summary-card">
+                <h1>Service Summary</h1>
+
                 <div className="summary-column">
                     <span className="summary-label">SERVICE</span>
                     <span className="summary-value link-text">{service}</span>
@@ -168,6 +190,8 @@ class Dashboard extends Component {
                     <span className="summary-value">{totalRefEarnings}</span>
                 </div>
             </div>
+
+        </>
         )
     }
 
@@ -182,6 +206,7 @@ class Dashboard extends Component {
                 <h3 className="refer-title">Refer friends and earn more</h3>
 
                 <div className="refer-cards-wrapper">
+
                     <div className="refer-card">
                         <label className="refer-label">YOUR REFERRAL LINK</label>
                         <div className="refer-input-group">
@@ -231,9 +256,9 @@ class Dashboard extends Component {
     }
 
     onClickReferral = id => {
-  const {history} = this.props
-  history.push(`/referrals/${id}`)
-}
+        const { history } = this.props
+        history.push(`/referrals/${id}`)
+    }
 
     renderAllreferrals = () => {
         const {
@@ -243,38 +268,12 @@ class Dashboard extends Component {
             sortBy,
         } = this.state
 
-        const {
-            referrals = [],
-            totalEntries = 0,
-        } = totalData
-
-        const filteredReferrals = referrals.filter(
-            item =>
-                item.name
-                    .toLowerCase()
-                    .includes(searchInput.toLowerCase()) ||
-                item.serviceName
-                    .toLowerCase()
-                    .includes(searchInput.toLowerCase()),
-        )
-
-        const sortedReferrals = [...filteredReferrals].sort(
-            (a, b) => {
-                const dateA = new Date(a.date)
-                const dateB = new Date(b.date)
-
-                if (sortBy === 'Newest first') {
-                    return dateB - dateA
-                }
-
-                return dateA - dateB
-            },
-        )
+        const { referrals = [] } = totalData
 
         const referralsPerPage = 10
 
         const totalPages = Math.ceil(
-            sortedReferrals.length / referralsPerPage,
+            referrals.length / referralsPerPage,
         )
 
         const startIndex =
@@ -283,10 +282,10 @@ class Dashboard extends Component {
         const endIndex =
             startIndex + referralsPerPage
 
-        const currentReferrals =
-            sortedReferrals.slice(startIndex, endIndex)
-
-    
+        const currentReferrals = referrals.slice(
+            startIndex,
+            endIndex,
+        )
 
         return (
             <div className="referrals-container">
@@ -302,8 +301,9 @@ class Dashboard extends Component {
                             </label>
 
                             <input
-                                type="text"
-                                placeholder="Name or service..."
+                                type="search"
+                                aria-label="Search referrals"
+                                placeholder="Name or service…"
                                 className="search-input"
                                 value={searchInput}
                                 onChange={this.onChangeSearch}
@@ -320,8 +320,8 @@ class Dashboard extends Component {
                                 value={sortBy}
                                 onChange={this.onChangeSort}
                             >
-                                <option>Newest first</option>
-                                <option>Oldest first</option>
+                                <option value="desc">Newest first</option>
+                                <option value="asc">Oldest first</option>
                             </select>
                         </div>
                     </div>
@@ -337,7 +337,7 @@ class Dashboard extends Component {
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody className="table-body">
                                 {currentReferrals.map(item => (
                                     <tr
                                         onClick={() => this.onClickReferral(item.id)}
@@ -360,9 +360,9 @@ class Dashboard extends Component {
                             Showing {startIndex + 1}-
                             {Math.min(
                                 endIndex,
-                                sortedReferrals.length,
+                                referrals.length,
                             )}
-                            {' '}of {sortedReferrals.length} entries
+                            {' '}of {referrals.length} entries
                         </span>
 
                         <div className="pagination">
@@ -408,6 +408,50 @@ class Dashboard extends Component {
             </div>
         )
     }
+
+    onChangeSort = event => {
+        const sortBy = event.target.value
+
+        this.setState(
+            {
+                sortBy,
+                currentPage: 1,
+            },
+            this.getReferrals,
+        )
+    }
+
+    onChangeSearch = event => {
+        const searchInput = event.target.value
+
+        this.setState(
+            {
+                searchInput,
+                currentPage: 1,
+            },
+            this.getReferrals,
+        )
+    }
+
+    renderFooter = () => <footer className="footer-container">
+        <div className="footer-content">
+            {/* Brand Text */}
+            <span className="footer-brand">Go Business</span>
+
+            {/* Navigation Links */}
+            <nav className="footer-nav" aria-label="Footer">
+                <a href="#about" className="footer-link">About</a>
+                <a href="#contact" className="footer-link">Contact</a>
+                <a href="#privacy" className="footer-link">Privacy</a>
+            </nav>
+
+            {/* Copyright notice */}
+            <p className="footer-copyright">
+                &copy; 2024 Go Business. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
     render() {
         return (
             <div className='dashboardContainer'>
@@ -418,6 +462,7 @@ class Dashboard extends Component {
                 {this.renderService()}
                 {this.renderReferFriend()}
                 {this.renderAllreferrals()}
+                {this.renderFooter()}
             </div>
         )
     }

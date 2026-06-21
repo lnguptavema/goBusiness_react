@@ -1,5 +1,3 @@
-
-import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { Component } from 'react'
 
@@ -24,7 +22,7 @@ class ReferralId extends Component {
         console.log(props)
         return (
             <div className="products-details-loader-container loadingcont" data-testid="loader">
-                <h1>Loading Dashboard...</h1>
+                <h1>Loading Details...</h1>
             </div>
         )
     }
@@ -48,8 +46,6 @@ class ReferralId extends Component {
         const data = await response.json()
 
         if (response.ok) {
-            console.log(data, 'dsds')
-
             this.setState({
                 referralData: data.data.referrals[0],
                 status: apiStatusConstants.success,
@@ -71,7 +67,7 @@ class ReferralId extends Component {
     }
     renderNavBar = () =>
         <div className='dashboardNavBar'>
-            <h1 className='gobuis'>Go Business</h1>
+            <h1 className='gobuis' onClick={this.backToDashboard}>Go Business</h1>
             <div>
                 <button className='tryhead'>Try for free</button>
                 <button className='logoutbtn' onClick={this.logout}>Logout</button>
@@ -138,7 +134,6 @@ class ReferralId extends Component {
     }
 
     render() {
-        const { referralData } = this.state
 
         return (
             <div className="referralcard">
