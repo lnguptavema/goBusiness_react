@@ -51,7 +51,7 @@ class Login extends Component {
         if (token !== undefined) {
             return <Redirect to="/" />
         }
-        const { errorMsg, email, password } = this.state
+        const { email, password } = this.state
         return (
             <div className="loginMainContainer">
                 <div className="loginContainer">
