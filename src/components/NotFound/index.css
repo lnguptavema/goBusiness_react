@@ -1,0 +1,14 @@
+.notfoundContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.backButton {
+  color: rgb(60, 131, 255);
+  border: 0px;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+}

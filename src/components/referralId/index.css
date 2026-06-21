@@ -1,0 +1,170 @@
+.backdash {
+  color: rgb(0, 124, 232);
+} /* Base Page Reset & Background styling */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fc;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.referral-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Navbar layout */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 16px 48px;
+  border-bottom: 1px solid #eaecef;
+}
+
+.logo-text {
+  color: #4361ee;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-try {
+  background-color: #5551ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-logout {
+  background: transparent;
+  color: #d00000;
+  border: 1px solid #f3d8d8;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Page content area */
+.dashboard-content {
+  padding: 40px 48px;
+  max-width: 1000px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.back-link {
+  color: #4c63b6;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.page-heading {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+}
+
+.refdeta {
+  margin: 0px;
+}
+
+.referralcard {
+  padding-top: 5px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.page-subheading {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 32px 0;
+}
+
+/* Exact Card layout matching image dimensions & borders */
+.details-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  max-width: 540px;
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px 20px 32px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.badge-hr {
+  background-color: #eef2ff;
+  color: #4f46e5;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* Card content body with explicit item borders and tracking */
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  padding: 20px 32px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  width: 160px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.profit-weight {
+  font-weight: 700;
+}

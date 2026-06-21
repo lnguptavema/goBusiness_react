@@ -1,0 +1,64 @@
+/* l */
+/* l */
+label {
+  margin-bottom: 5px;
+}
+.loginButton {
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  color: white;
+  border-radius: 10px;
+  width: 30vw;
+  height: 6vh;
+  margin: 10px;
+  background-color: #6366f1;
+}
+.websiteLogoLogin {
+  height: 5vh;
+  width: 10vw;
+  margin-bottom: 35px;
+  margin: 10px;
+}
+.errorMsg {
+  color: red;
+}
+.loginInput {
+  background-color: transparent;
+  border-radius: 5px;
+  outline: none;
+  height: 8vh;
+  width: 30vw;
+  border: solid 1px #cbd5e1;
+  cursor: pointer;
+}
+.loginInputCard {
+  display: flex;
+  padding: 10px;
+  justify-content: space-evenly;
+  height: 13vh;
+  flex-direction: column;
+}
+.loginMainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #eceef0;
+  height: 100vh;
+}.gobuis{
+    color:rgb(92, 82, 240);
+}
+.loginContainer {
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  align-self: center;
+  align-content: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  height: 60vh;
+}
